@@ -1,5 +1,3 @@
-import ButtonSolid from "./buttonSolid";
-
 interface TransactionCardProps {
     transactionId: string;
     transactionName: string;

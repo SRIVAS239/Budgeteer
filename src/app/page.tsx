@@ -1,6 +1,4 @@
 import Dashboard from "./dashboard/page";
-import Categorycard from "./UI/transactioncard";
-import Navbar from "./UI/navbar";
 import Transactioncard from "./UI/transactioncard";
 
 export default function Home() {
