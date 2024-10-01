@@ -1,3 +1,4 @@
+
 interface TransactionCardProps {
     transactionId: string;
     transactionName: string;
@@ -5,12 +6,15 @@ interface TransactionCardProps {
     transactionAmount: number;
   }
   interface TransactionProps {
-    transaction: TransactionCardProps; 
+    transaction: TransactionCardProps;
+    onCardSelect: (transaction: TransactionCardProps) => void; 
   }
-  const TransactionCard: React.FC<TransactionProps> = ({ transaction }: TransactionProps) => {
+  const TransactionCard: React.FC<TransactionProps> = ({ onCardSelect, transaction }) => {
 //export default function Transactioncard({transaction}:TransactionProps){
-    return (
-        <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+    
+
+return (
+        <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" onClick={() => onCardSelect(transaction)}>
         <div className="p-4">
             <div className="toprow flex flex-row">
                 <h6 className="text-slate-800 font-semibold">{transaction.transactionName}</h6>
