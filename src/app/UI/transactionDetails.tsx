@@ -1,8 +1,9 @@
+import { Transaction } from "../services/transaction";
 
 
 interface SidePanelProps {
   isOpen: boolean;
-  transaction:any;
+  transaction:Transaction|null;
   onPanelClose:()=>void;
 }
 
@@ -17,7 +18,7 @@ const TransactionDetails: React.FC<SidePanelProps> = ({ isOpen, transaction,onPa
       >
         <div className="p-4">
           <h2 className="text-lg font-semibold">Side Panel</h2>
-          <p>transaction.transactionName</p>
+          <p>{transaction?transaction.transactionName:'no data available'}</p>
           <button
             onClick={onPanelClose}
             className="mt-4 px-4 py-2 bg-red-600 text-white rounded-md"

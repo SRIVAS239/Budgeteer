@@ -7,21 +7,6 @@ import TransactionCard from "./UI/transactioncard";
 import { fetchTransactions, Transaction } from "./services/transaction";
 
 export default function Home() {
-  /*const transactions = [
-    {
-      transactionId: "1",
-      transactionName: "Monthly Groceries",
-      transactionCategory: "Groceries",
-      transactionAmount: 200.0,
-    },
-    {
-      transactionId: "2",
-      transactionName: "Electricity Bill",
-      transactionCategory: "Utilities",
-      transactionAmount: 100.0,
-    },
-    
-  ];*/
 
   //state for latest transactions -> fetched from api
   const [latestTransactions,setLatestTransactions]=useState<Transaction[]>([]);
@@ -30,11 +15,11 @@ export default function Home() {
     const [isOpen, setIsOpen] = useState(false);
 
     //state for selected transaction
-    const [selectedState,setSelectedState]=useState(null);
+    const [selectedState,setSelectedState]=useState<Transaction|null>(null);
     
     //defining eventhandler for card click -> open side panel, pass selected transaction
     //function as a prop
-    const onSelectCard = (transaction:any) => {
+    const onSelectCard = (transaction:Transaction) => {
         setIsOpen(!isOpen);
         setSelectedState(transaction);
       };
@@ -72,6 +57,7 @@ export default function Home() {
 
         {latestTransactions.map((transaction) => (
           <TransactionCard
+            key={transaction.transactionId}
             transaction={transaction}
             onCardSelect={onSelectCard}
           />
@@ -79,7 +65,7 @@ export default function Home() {
       </div>
       {/* Side panel opens, pass props to open, close and transaction data */}
       
-      <TransactionDetails isOpen={isOpen} transaction={setSelectedState} onPanelClose={onDeselectCard} />
+      <TransactionDetails isOpen={isOpen} transaction={selectedState} onPanelClose={onDeselectCard} />
       
     </div>
     
